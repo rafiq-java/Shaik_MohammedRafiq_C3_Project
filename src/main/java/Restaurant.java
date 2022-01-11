@@ -84,9 +84,9 @@ public class Restaurant {
     }
 
     public List<Cart> getCart() throws cartIsEmptyException{
-        /*for ( Cart Cart:cart) {
+        for ( Cart Cart:cart) {
             return cart;
-        }*/
+        }
         throw new cartIsEmptyException();//DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
     }
     public String addItemByName(String itemName)throws cartIsEmptyException{
@@ -98,28 +98,21 @@ public class Restaurant {
         return null;
     }
     public void addToCart(String name,int price) {
-       /* Cart newItem = new Cart(name,price);
-        cart.add(newItem);*/
+        Cart newItem = new Cart(name,price);
+        cart.add(newItem);
     }
     public int getCartTotal() throws cartIsEmptyException {
-        /*int x=0;
+        int x=0;
         for(Cart cart:cart) {
             price = getCart().get(x).getPrice()+price;
             x=x+1;
-        }*/
+        }
         return price;
     }
 
     public void showCart() {
-        /*for (Cart cart:cart){
+        for (Cart cart:cart){
             System.out.println(cart.getName()+"  "+cart.getPrice());
-        }*/
-    }
-    public int getTotal(){
-        int total=0;
-       /* for(Cart cart:cart) {
-            total = total + cart.getPrice();
-        }*/
-        return total;
+        }
     }
 }

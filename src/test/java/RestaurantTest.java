@@ -64,4 +64,32 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void adding_item_to_cart_should_increase_cart_size_by_1() throws cartIsEmptyException{
+        /*extracted();
+        restaurant.addToMenu("Sweet soup",100);
+        restaurant.addToMenu("Lasagne", 200);
+        restaurant.addToCart (restaurant.addItemByName("Sweet corn soup"),restaurant.addItemPrice("Sweet corn soup"));
+       */ restaurant.addToCart(restaurant.addItemByName("Lasagne"),restaurant.addItemPrice("Lasagne"));
+        int initialCartSize = restaurant.getCart().size();
+        restaurant.addToCart(restaurant.addItemByName("Sweet soup"),restaurant.addItemPrice("Sweet soup"));
+        assertEquals(initialCartSize+1,restaurant.getCart().size());
+    }
+    @Test
+    public void display_total_should_add_item_prices_and_display_total() throws cartIsEmptyException {
+        restaurant.addToCart("Sweet corn soup",119);
+        restaurant.addToCart("Vegetable lasagne", 269);
+        assertEquals(119+269, restaurant.getCartTotal());
+    }
+
+    @Test
+    public void displaying_cart_items() throws cartIsEmptyException {
+      /*  extracted();
+        restaurant.addToCart("Sweet soup", 100);
+        restaurant.addToCart("Lasagne", 200);
+        restaurant.showCart();*/
+        assertEquals(2,restaurant.getCart().size());
+        assertEquals("Sweet soup",restaurant.getCart().get(0).getName());
+        assertEquals("Lasagne",restaurant.getCart().get(1).getName());
+    }
 }

@@ -19,32 +19,26 @@ public class Restaurant {
 
     public boolean isRestaurantOpen(LocalTime now) {
         getCurrentTime();
-       boolean status = false;
-       if ( LocalTime.now().isAfter(this.openingTime) ){
-           if ( LocalTime.now().isBefore(this.closingTime) ){
-               status = true;
-           }
-       } else if ( LocalTime.now().isAfter(this.closingTime) ) {
-           if ( LocalTime.now().isBefore(this.openingTime) ) {
-               status = false;
-           }
-       } else {
-           status = false;
-       }
-       return status; //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+        boolean status = false;
+        if ( LocalTime.now().isAfter(this.openingTime) ){
+            if ( LocalTime.now().isBefore(this.closingTime) ){
+                status = true;
+            }
+        } else if ( LocalTime.now().isAfter(this.closingTime) ) {
+            if ( LocalTime.now().isBefore(this.openingTime) ) {
+                status = false;
+            }
+        } else {
+            status = false;
+        }
+        return status; //DELETE ABOVE STATEMENT AND WRITE CODE HERE
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
-       for ( Item item:menu){
+        for ( Item item:menu){
             return menu;
-       }
-        return null;//DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
-    }
-    public List<Cart> getCart() {
-        for ( Cart Cart:cart) {
-            return cart;
         }
         return null;//DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
     }
@@ -60,23 +54,13 @@ public class Restaurant {
         Item newItem = new Item(name,price);
         menu.add(newItem);
     }
-    public String addItemByName(String itemName)throws cartIsEmptyException{
-        for(Item item: menu) {
-            if(item.getName().equals(itemName));
-                return item.getName();
-        }
-        return null;
-    }
+
     public int addItemPrice(String itemName)throws cartIsEmptyException{
         for(Item item: menu) {
             if(item.getName().equals(itemName));
             return item.getPrice();
         }
         return 0;
-    }
-    public void addToCart(String name,int price) {
-        Cart newItem = new Cart(name,price);
-        cart.add(newItem);
     }
 
     public void removeFromMenu(String itemName) throws itemNotFoundException {
@@ -98,25 +82,44 @@ public class Restaurant {
     public String getName() {;
         return name;
     }
-    public int getCartTotal(){
-        int x=0;
+
+    public List<Cart> getCart() throws cartIsEmptyException{
+        /*for ( Cart Cart:cart) {
+            return cart;
+        }*/
+        throw new cartIsEmptyException();//DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
+    }
+    public String addItemByName(String itemName)throws cartIsEmptyException{
+        for(Item item: menu) {
+            if(item.getName().equals(itemName)) {
+                return itemName;
+            }
+        }
+        return null;
+    }
+    public void addToCart(String name,int price) {
+       /* Cart newItem = new Cart(name,price);
+        cart.add(newItem);*/
+    }
+    public int getCartTotal() throws cartIsEmptyException {
+        /*int x=0;
         for(Cart cart:cart) {
             price = getCart().get(x).getPrice()+price;
             x=x+1;
-        }
+        }*/
         return price;
     }
 
     public void showCart() {
-        for (Cart cart:cart){
+        /*for (Cart cart:cart){
             System.out.println(cart.getName()+"  "+cart.getPrice());
-        }
+        }*/
     }
-    /*public int getTotal(){
+    public int getTotal(){
         int total=0;
-        for(Cart cart:cart) {
+       /* for(Cart cart:cart) {
             total = total + cart.getPrice();
-        }
+        }*/
         return total;
-    }*/
+    }
 }

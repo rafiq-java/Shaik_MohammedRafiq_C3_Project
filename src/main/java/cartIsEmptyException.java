@@ -1,5 +1,5 @@
 public class cartIsEmptyException extends Throwable {
-    public cartIsEmptyException(String e) {
+    public cartIsEmptyException() {
       System.out.println("Cart is Empty");
     }
 }
